@@ -12,7 +12,7 @@ public final class Sphere extends Shape {
 	}
 
 	@Override
-	public Vector normalToPoint(Vector point) {
+	public Vector normalAtIntersection(Vector point) {
 		Vector v = point.sub(center);
 		return v.div(radius);
 	}

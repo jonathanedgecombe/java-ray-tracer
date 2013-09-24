@@ -49,7 +49,7 @@ public final class Scene {
 			color = object.getColor().mul(globalIllumination);
 
 			Vector intersection = ray.getOrigin().add(ray.getDirection().mul(distance));
-			Vector normal = object.normalToPoint(intersection);
+			Vector normal = object.normalAtIntersection(intersection);
 
 			
 

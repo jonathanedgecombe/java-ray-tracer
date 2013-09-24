@@ -1,7 +1,7 @@
 package com.jonathanedgecombe.raytracer;
 
 public abstract class Shape {
-	public abstract Vector normalToPoint(Vector point);
+	public abstract Vector normalAtIntersection(Vector point);
 	public abstract Intersection intersect(Ray ray);
 
 	private final double specularity, reflectivity;

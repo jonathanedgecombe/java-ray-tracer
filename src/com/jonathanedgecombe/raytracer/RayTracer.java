@@ -114,7 +114,7 @@ public final class RayTracer extends JPanel {
 	}
 
 	public static void main(String[] args) throws InterruptedException, IOException {
-		Scene scene = new Scene(new Camera(new Vector(0, 2, -10), new Vector(0, -0.2, 1).normalize(), 1920, 1200, 80.0*(2*Math.PI/360)), 0.5, new Vector(0.9, 0.9, 0.9));
+		Scene scene = new Scene(new Camera(new Vector(0, 2, -10), new Vector(0, -0.2, 1).normalize(), 800, 600, 80.0*(2*Math.PI/360)), 0.5, new Vector(0.9, 0.9, 0.9));
 
 		final RayTracer tracer = new RayTracer(scene);
 
@@ -149,8 +149,7 @@ public final class RayTracer extends JPanel {
 	}
 
 	public int min(int a, int b) {
-		if (b < a) return b;
-		return a;
+		return b < a ? b : a;
 	}
 
 	public List<RenderArea> getDrawing() {

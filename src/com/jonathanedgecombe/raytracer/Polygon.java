@@ -28,7 +28,7 @@ public final class Polygon extends Shape {
 	}
 
 	@Override
-	public Vector normalToPoint(Vector point) {
+	public Vector normalAtIntersection(Vector point) {
 		return normal;
 	}
 
