@@ -1,4 +1,4 @@
-java-ray-tracer
+Java Ray Tracer
 ===============
 
 A simple Java ray tracer.
