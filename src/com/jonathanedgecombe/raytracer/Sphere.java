@@ -4,8 +4,8 @@ public final class Sphere extends Shape {
 	private final Vector center;
 	private final double radius;
 
-	public Sphere(Vector center, double radius, Vector color, double specularity, double reflectivity) {
-		super(color, specularity, reflectivity);
+	public Sphere(Vector center, double radius, Vector color, double specularity, double reflectivity, double transparency, double refractiveIndex) {
+		super(color, specularity, reflectivity, transparency, refractiveIndex);
 
 		this.center = center;
 		this.radius = radius;

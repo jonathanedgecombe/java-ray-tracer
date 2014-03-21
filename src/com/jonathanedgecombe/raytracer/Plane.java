@@ -4,8 +4,8 @@ public final class Plane extends Shape {
 	private final double d;
 	private final Vector normal;
 
-	public Plane(Vector p1, Vector p2, Vector p3, Vector color, double specularity, double reflectivity) {
-		super(color, specularity, reflectivity);
+	public Plane(Vector p1, Vector p2, Vector p3, Vector color, double specularity, double reflectivity, double transparency, double refractiveIndex) {
+		super(color, specularity, reflectivity, transparency, refractiveIndex);
 
 		double v1x = p1.getX()-p2.getX();
 		double v1y = p1.getY()-p2.getY();

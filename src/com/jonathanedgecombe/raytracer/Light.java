@@ -4,7 +4,7 @@ public final class Light extends Shape {
 	private final Vector center;
 
 	public Light(Vector center, Vector color) {
-		super(color, 0.0, 0.0);
+		super(color, 0.0, 0.0, 0.0, 0.0);
 
 		this.center = center;
 	}

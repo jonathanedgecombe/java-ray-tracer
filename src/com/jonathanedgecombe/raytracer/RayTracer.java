@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.locks.Condition;
@@ -114,18 +115,29 @@ public final class RayTracer extends JPanel {
 	}
 
 	public static void main(String[] args) throws InterruptedException, IOException {
-		Scene scene = new Scene(new Camera(new Vector(0, 2, -10), new Vector(0, -0.2, 1).normalize(), 800, 600, 80.0*(2*Math.PI/360)), 0.5, new Vector(0.9, 0.9, 0.9));
+		Scene scene = new Scene(new Camera(new Vector(5.01, 10, -5), new Vector(0, -1, 1).normalize(), 800, 400, 80.0*(2*Math.PI/360), 13, 4, 4, 4, 8), 0.5, new Vector(0.5, 0.75, 1.0));
 
 		final RayTracer tracer = new RayTracer(scene);
 
-		tracer.getScene().addObject(new Plane(new Vector(1, -1, 0), new Vector(0, -1, 0), new Vector(0, -1, 1), new Vector(0.3, 0.3, 0.3), 0.5, 0.05));
-		tracer.getScene().addObject(new Sphere(new Vector(0.5, 0, 0), 1.0, new Vector(0.66, 0.33, 0), 0.5, 0.03));
-		tracer.getScene().addObject(new Sphere(new Vector(-1.5, 0, -0.5), 1.0, new Vector(1, 1, 1), 0.5, 0.8));
+		tracer.getScene().addObject(new Plane(new Vector(1, -0.01, 0), new Vector(0, -0.01, 0), new Vector(0, -0.01, 1), new Vector(0.5, 0.75, 1.0), 0.2, 0.05, 0, 1));
+		tracer.getScene().addObject(new Sphere(new Vector(5, 3, 5), 1.0, new Vector(1, 1, 1), 0.5, 0.66, 0.66, 0.85));
 
-		tracer.getScene().addLight(new Light(new Vector(-2, 2, 2), new Vector(1, 1, 1)));
-		tracer.getScene().addLight(new Light(new Vector(2, 2, 2), new Vector(1, 1, 1)));
-		tracer.getScene().addLight(new Light(new Vector(-2, 2, -2), new Vector(1, 1, 1)));
-		tracer.getScene().addLight(new Light(new Vector(2, 2, -2), new Vector(1, 1, 1)));
+		Random rng = new Random();
+		double[][] heightmap = new double[11][11];
+
+		for (int x = 0; x <= 10; x++) {
+			for (int z = 0; z <= 10; z++) {
+				heightmap[x][z] = rng.nextFloat();
+			}
+		}
+		for (int x = 0; x < 10; x++) {
+			for (int z = 0; z < 10; z++) {
+				tracer.getScene().addObject(new Polygon(new Vector(x+1, heightmap[x+1][z], z+0), new Vector(x+0, heightmap[x][z+1], z+1), new Vector(x+1, heightmap[x+1][z+1], z+1), new Vector(0.9, 0.2, 0.2), 0, 0, 0, 2));
+				tracer.getScene().addObject(new Polygon(new Vector(x+0, heightmap[x][z], z+0), new Vector(x+0, heightmap[x][z+1], z+1), new Vector(x+1, heightmap[x+1][z], z+0), new Vector(0.9, 0.2, 0.2), 0, 0, 0, 2));
+			}
+		}
+
+		tracer.getScene().addLight(new Light(new Vector(-5, 10, 5), new Vector(1, 1, 0.75)));
 
 		new Thread(new Runnable() {
 			@Override

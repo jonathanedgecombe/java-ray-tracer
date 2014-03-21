@@ -5,8 +5,8 @@ public final class Polygon extends Shape {
 	private final Vector normal;
 	private final Vector p1, p2, p3;
 
-	public Polygon(Vector p1, Vector p2, Vector p3, Vector color, double specularity, double reflectivity) {
-		super(color, specularity, reflectivity);
+	public Polygon(Vector p1, Vector p2, Vector p3, Vector color, double specularity, double reflectivity, double transparency, double refractiveIndex) {
+		super(color, specularity, reflectivity, transparency, refractiveIndex);
 
 		double v1x = p1.getX()-p2.getX();
 		double v1y = p1.getY()-p2.getY();
